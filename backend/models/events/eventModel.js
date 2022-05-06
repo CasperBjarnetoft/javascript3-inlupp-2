@@ -53,11 +53,11 @@ exports.getEventbyId= (req, res) => {
 
 // POST (Create a model)
 exports.createEvent = (req, res) => {
-
+    
     Event.create({
             title:          req.body.title,       
             description:    req.body.description,
-            date:           new Date(req.body.date)      
+            date:           new Date(req.body.date).toLocaleString()      
         })
         .then(data => {
             res.status(201).json({
