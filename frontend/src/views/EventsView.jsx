@@ -1,16 +1,22 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Event from '../components/event'
+import { getEvents } from '../store/actions/eventsAction'
 
 const EventsView = () => {
+
+  const dispatch = useDispatch()
+  const { data: posts } = useSelector(state => state.events)
+
+  useEffect(() => {
+    dispatch(getEvents())
+  }, [dispatch])
+
   return (
-    <div className='mt-5 m-auto'>
-      <div className="card p-3 d-flex flex-row align-items-center justify-content-between">
-        <h3>Speedway</h3>
-        <div className='d-flex d-flex align-items-center'>
-          <h4 className='me-3'>18:55</h4>
-          <h4>2020-05-05</h4>
-        </div>
-      </div>
+    <div className='mt-3'>
+      { posts.map(event => <Event key={event._id} event={event} />)}
     </div>
+
   )
 }
 
