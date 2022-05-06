@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Views from './views/Views';
 
 function App() {
+
   return (
     <div className="App">
       <Navbar />

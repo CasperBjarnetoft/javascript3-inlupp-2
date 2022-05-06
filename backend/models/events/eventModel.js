@@ -54,25 +54,10 @@ exports.getEventbyId= (req, res) => {
 // POST (Create a model)
 exports.createEvent = (req, res) => {
 
-    Event.exists({ event: req.body.event }, (err, result) => {
-
-        if(err) {
-            return res.status(500).json(err)
-        }
-
-        if(result) {
-            return res.status(400).json({
-                statusCode: 400,
-                status: false,
-                message: 'That event already exist'
-            })
-        }
-        Event.create({
+    Event.create({
             title:          req.body.title,       
             description:    req.body.description,
-            date:           req.body.date,
-            time:           req.body.time
-            
+            date:           new Date(req.body.date)      
         })
         .then(data => {
             res.status(201).json({
@@ -90,8 +75,6 @@ exports.createEvent = (req, res) => {
                 err
             })
         })
-
-    })
 }
 
 // PATCH (uppdate model)
