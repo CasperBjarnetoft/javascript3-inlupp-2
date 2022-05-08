@@ -14,6 +14,25 @@ export const getEvents = () => {
   }
 }
 
+export const addEvent = (event) => {
+  return async dispatch => {
+    dispatch(loading(true))
+    try {
+      const res = await axios.post('http://localhost:9999/api/events', event)
+      dispatch(addToList(res.data))
+    }
+    catch(err) {
+      dispatch(eventsFailure(err.message))
+    }
+  }
+}
+
+const addToList = (event) => {
+  return {
+    type: actiontypes().events.addNewEvent,
+    payload: event
+  }
+}
 
 const loading = (payload) => {
   return {

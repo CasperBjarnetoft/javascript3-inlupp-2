@@ -8,7 +8,7 @@ const Navbar = () => {
       <header className='fs-3 fw-bold'><Link to="/" className='text-dark'>Events</Link></header>
 
         <div className='d-flex align-items-center'>
-          <button className='btn btn-dark me-3' data-mdb-toggle="modal"><NavLink to="/addevent" className="nav-link text-light" >Add event</NavLink></button>
+          <button className='btn btn-dark me-3'><NavLink to="/addevent" className="nav-link text-light" >Add event</NavLink></button>
           <div className="dropdown">
               <a
                 className="dropdown-toggle d-flex align-items-center hidden-arrow"
