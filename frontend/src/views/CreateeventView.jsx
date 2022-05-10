@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addEvent } from '../store/actions/eventsAction'
 
@@ -7,6 +7,8 @@ const CreatepostView = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const loading = useSelector(state => state.events.loading)
 
   const [addedEvent, setAddedEvent] = useState(false)
 
@@ -55,10 +57,10 @@ const CreatepostView = () => {
   }
 
   useEffect(() => {
-    if(addedEvent) {
+    if(!loading && addedEvent) {
       navigate('/')
     }
-  }, [addedEvent, navigate])
+  }, [loading, addedEvent, navigate])
 
   return (
     <div className='container mt-5 bg-light rounded'>
@@ -81,7 +83,7 @@ const CreatepostView = () => {
           {errors.description && <div className='text-danger'>{errors.description}</div>}
         </div>
 
-        <button type="submit" className="btn btn-dark btn-block mb-4">Add event</button>
+        <button type="submit" className="btn btn-dark btn-block mb-4">{ loading ? 'loading...' : 'Add event'}</button>
       </form>
     </div>
   )
