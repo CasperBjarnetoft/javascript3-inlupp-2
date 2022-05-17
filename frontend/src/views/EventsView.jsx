@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Children, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Event from '../components/event'
 import Loader from '../components/loader/Loader'
@@ -9,6 +9,15 @@ const EventsView = () => {
   const dispatch = useDispatch()
   const { loading, error, data: events } = useSelector(state => state.events)
 
+  const sortedevents = events.sort((a, b) => {
+    const date1 = new Date(a.date)
+    const date2 = new Date(b.date)
+    const first = date1.getTime()
+    const second = date2.getTime()
+
+    return first - second
+  })
+
   useEffect(() => {
     dispatch(getEvents())
   }, [dispatch])
@@ -17,7 +26,7 @@ const EventsView = () => {
     <div className='mt-3'>
       { loading && <Loader />}
       { error && <p>{error}</p>}
-      { events.map(event => <Event key={event._id} event={event} />)}
+      { sortedevents.map(event => <Event key={event._id} event={event} />)}
     </div>
 
   )
