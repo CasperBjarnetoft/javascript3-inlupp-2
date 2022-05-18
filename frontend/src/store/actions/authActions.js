@@ -4,7 +4,6 @@ import actiontypes from '../actiontypes'
 const apiCall = (url, user, dispatch) => {
   axios.post(url, user)
   .then(res => {
-    console.log(res.data)
     dispatch(authSuccess(res.data.token))
   })
   .catch(err => dispatch(authFailure(err.message)))

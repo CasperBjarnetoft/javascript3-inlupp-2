@@ -8,6 +8,7 @@ const EventsView = () => {
 
   const dispatch = useDispatch()
   const { loading, error, data: events } = useSelector(state => state.events)
+  const token = useSelector(state => state.auth.token)
 
   const [oldEvents, setOldEvents] = useState([])
   const [upcomingEvents, setUpcomingEvents] = useState([])
@@ -26,8 +27,10 @@ const EventsView = () => {
   }, [events])
 
   useEffect(() => {
-    dispatch(getEvents())
-  }, [dispatch])
+    if(token) {
+      dispatch(getEvents())
+    } 
+  }, [dispatch, token])
 
   return (
     <div className='mt-3'>
