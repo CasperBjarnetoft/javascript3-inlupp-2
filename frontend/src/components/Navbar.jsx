@@ -18,7 +18,7 @@ const Navbar = () => {
 
           { token ?
             (<>
-            <button className='btn btn-dark me-3'><NavLink to="/addevent" className="nav-link text-light" >Add event</NavLink></button>
+            <button className='btn btn-dark me-3'><NavLink to="/addevent" className="text-light" >Add event</NavLink></button>
             <div className="dropdown">
                 <a
                   className="dropdown-toggle d-flex align-items-center hidden-arrow"
@@ -41,6 +41,8 @@ const Navbar = () => {
                   aria-labelledby="navbarDropdownMenuAvatar"
                 >
                 <li>
+                  <Link className="dropdown-item" to="/events">events</Link>
+                  <Link className="dropdown-item" to="/oldevents">Old events</Link>
                   <Link className="dropdown-item" onClick={() => dispatch(logout())} to="/">Logout</Link>
                 </li>
               </ul>

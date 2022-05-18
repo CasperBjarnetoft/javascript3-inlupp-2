@@ -5,6 +5,7 @@ import EventsView from './EventsView'
 import EventdetailsView from './EventdetailsView'
 import LoginView from './LoginView'
 import RegisterView from './RegisterView'
+import OldeventsView from './OldeventsView'
 
 const Views = () => {
   return (
@@ -14,6 +15,7 @@ const Views = () => {
       <Route path='/addevent' element={ <CreatepostView />} />
       <Route path='/events' element={ <EventsView />} />
       <Route path='/register' element={ <RegisterView />} />
+      <Route path='/oldevents' element={ <OldeventsView />} />
     </Routes>
   )
 }
