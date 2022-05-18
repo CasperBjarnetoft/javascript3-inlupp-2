@@ -58,7 +58,7 @@ const CreatepostView = () => {
 
   useEffect(() => {
     if(!loading && addedEvent) {
-      navigate('/')
+      navigate('/events')
     }
   }, [loading, addedEvent, navigate])
 
@@ -73,7 +73,7 @@ const CreatepostView = () => {
 
         <div className="form datetimepicker mb-4">
           <label className="form-label">Date and Time (year-month-date 00:00:00)</label>
-          <input type="text" name="date" onChange={onChange} value={formData.date} className="form-control" id="datetimepickerExample" />
+          <input type="datetime-local" name="date" onChange={onChange} value={formData.date} className="form-control" id="datetimepickerExample" />
           {errors.date && <div className='text-danger'>{errors.date}</div>}
         </div>
 

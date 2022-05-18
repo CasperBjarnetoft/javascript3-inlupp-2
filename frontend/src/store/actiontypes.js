@@ -9,6 +9,12 @@ const actiontypes = () => {
       setEvent: 'SET_EVENT',
       loading: 'LOADING',
       failure: 'EVENT_FAILURE',
+    },
+    auth: {
+      loading: 'LOADING',
+      authFailure: 'AUTH_FAILURE',
+      authSuccess: 'AUTH_SUCCES',
+      logout: 'LOGOUT'
     }
   }
 }

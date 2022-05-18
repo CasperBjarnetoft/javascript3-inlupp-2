@@ -5,7 +5,13 @@ export const getEvents = () => {
   return async dispatch => {
     dispatch(loading(true))
     try {
-      const res = await axios.get('http://localhost:9999/api/events')
+      const token = localStorage.getItem('token')
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      const res = await axios.get('http://localhost:9999/api/events', config)
       dispatch(setEvents(res.data))
     }
     catch(err) {
@@ -18,7 +24,13 @@ export const addEvent = (event) => {
   return async dispatch => {
     dispatch(loading(true))
     try {
-      const res = await axios.post('http://localhost:9999/api/events', event)
+      const token = localStorage.getItem('token')
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+      const res = await axios.post('http://localhost:9999/api/events', event, config)
       dispatch(addToList(res.data))
     }
     catch(err) {

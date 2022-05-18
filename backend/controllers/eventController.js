@@ -1,14 +1,15 @@
 const router = require('express').Router();
 const eventModel = require('../models/events/eventModel')
+const auth = require('../authentication/auth')
  
 // GET (all products)
-router.get('/', eventModel.getEvents)
+router.get('/', auth.verifyToken, eventModel.getEvents)
 
 // GET (one product by id)
 router.get('/:id', eventModel.getEventbyId)
 
 // POST (Create a product)
-router.post('/', eventModel.createEvent)
+router.post('/', auth.verifyToken, eventModel.createEvent)
 
 // PATCH (uppdate product)
 router.patch('/:id', eventModel.updateEvent)

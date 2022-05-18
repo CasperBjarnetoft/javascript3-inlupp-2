@@ -5,6 +5,7 @@ import Views from './views/Views';
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { getEvents } from './store/actions/eventsAction';
+import { checkUser } from './store/actions/authActions';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getEvents())
+    dispatch(checkUser())
   }, [dispatch])
 
   return (

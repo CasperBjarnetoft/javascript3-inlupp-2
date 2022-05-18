@@ -4,7 +4,7 @@ const Event = require('./eventSchema')
 exports.getEvents = async (req, res) => {
 
     try {
-        const data = await Event.find()
+        const data = await Event.find({ user: req.userData.id })
         res.status(200).json(data)
     }
     catch (err) {
@@ -55,6 +55,7 @@ exports.getEventbyId= (req, res) => {
 exports.createEvent = (req, res) => {
     
     Event.create({
+            user: req.userData.id,
             title:          req.body.title,       
             description:    req.body.description,
             date:           new Date(req.body.date).toLocaleString()      
