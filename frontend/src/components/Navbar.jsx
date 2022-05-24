@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container ">
-      <header className='fs-3 fw-bold'><Link to="/events" className='text-dark'>Events</Link></header>
+      <header className='fs-3 fw-bold'><Link to={token ? "/events" : "/"} className='text-dark'>Events</Link></header>
 
         <div className='d-flex align-items-center'>
 
