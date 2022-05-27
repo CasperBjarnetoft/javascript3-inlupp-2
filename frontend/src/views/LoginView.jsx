@@ -8,6 +8,9 @@ const LoginView = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const errorsObj = { email: '', password: ''}
+  const [errors, setErrors] = useState(errorsObj)
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -22,8 +25,24 @@ const LoginView = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    dispatch(login(formData))
-    navigate("/events")
+    let error = false;
+    const errorsObj = { email: '', password: ''}
+    if(formData.email === '') {
+      errorsObj.email = "email is Required"
+      error = true;
+    }
+
+    if(formData.password === '') {
+      errorsObj.password = "password is Required"
+      error = true;
+    }
+
+    setErrors(errorsObj)
+
+    if(!error) {
+      dispatch(login(formData))
+      navigate("/events")
+    }
   }
 
   return (
@@ -33,11 +52,13 @@ const LoginView = () => {
         <div className="form mb-4">
           <label className="form-label">Email</label>
           <input type="email" value={formData.email} onChange={onChange} name="email"className="form-control" />
+          {errors.email && <div className='text-danger'>{errors.email}</div>}
         </div>
 
         <div className="form mb-4">
           <label className="form-label">password</label>
           <input type="password" value={formData.password} onChange={onChange} name="password" className="form-control"  />
+          {errors.password && <div className='text-danger'>{errors.password}</div>}
         </div>
         <p>Not a member? <Link className='link' to='/register'>register</Link></p>
         <button type="submit" className="btn btn-dark btn-block mb-4">Login</button>
